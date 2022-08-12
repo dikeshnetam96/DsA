@@ -1,0 +1,37 @@
+// Time Complexity - O(NLogN) 
+// Space Complexity - O(N)
+
+class Solution
+{
+    //Function to perform case-specific sorting of strings.
+    public static String caseSort(String str)
+    {
+       PriorityQueue<Character> pqCaps = new PriorityQueue<Character>();
+	     PriorityQueue<Character> pqSmal = new PriorityQueue<Character>();
+		
+		for(int i=0;i<str.length();i++)
+		{
+			if((str.charAt(i)>=97 && str.charAt(i)<=122)) 
+				pqSmal.add(str.charAt(i));
+			if((str.charAt(i)>=65 && str.charAt(i)<=90))
+				pqCaps.add(str.charAt(i));
+		}
+		
+		StringBuilder ans = new StringBuilder();
+		for(int i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)>=97 && str.charAt(i)<=122)
+			{
+				char ch = pqSmal.poll();
+					ans.append(ch);
+			}
+			else
+			{
+				char ch = pqCaps.poll();
+					ans.append(ch);
+			}
+		}
+		
+	return ans.toString();
+    }
+}
